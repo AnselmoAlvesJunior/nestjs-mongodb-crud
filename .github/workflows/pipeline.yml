@@ -22,4 +22,4 @@ jobs:
       - name: Run Tests
         run: npm run test
       - name: Build Application
-        run: nest build
+        run: npm run build
