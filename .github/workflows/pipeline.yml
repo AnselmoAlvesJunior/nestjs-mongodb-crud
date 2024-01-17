@@ -21,7 +21,9 @@ jobs:
         run: npm install --save @nestjs/mongoose mongoose
       - name: Install validators
         run: npm install class-validator --save
+      - name: Install validator transformer
         run: npm install class-transformer --save
+      - name: Install mapped-types
         run: npm i @nestjs/mapped-types --save
       - name: Compile TypeScript
         run: npm run start
