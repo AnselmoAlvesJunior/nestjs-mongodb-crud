@@ -44,6 +44,6 @@ export class StudentService {
     if (!deletedStudent) {
       throw new NotFoundException(`Student #${studentId} not found`);
     }
-    return deletedStudent;
+    return deletedStudent.toObject() as IStudent;
   }
 }
