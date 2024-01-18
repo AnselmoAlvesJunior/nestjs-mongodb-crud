@@ -12,7 +12,6 @@ jobs:
         image: mongo:latest
         ports:
           - 27017:27017
-        command: ["--health-cmd=mongo --eval 'db.runCommand({ connectionStatus: 1 })'"]
         
     steps:
       - name: Checkout Repository
