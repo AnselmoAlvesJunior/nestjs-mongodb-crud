@@ -1,27 +1,36 @@
 name: NestJs Pipeline
-
 on:
-  push:
+  pull_request:
     branches:
-      - main
-
+      - master
 jobs:
   Build:
     runs-on: ubuntu-latest
+
+    services:
+      mongodb:
+        image: mongo:latest
+        ports:
+          - 27017:27017
+        
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
       - name: Setup Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
-          node-version: 14
+          node-version: 16
       - name: Install Dependencies
         run: npm install
       - name: Install TypeScript
         run: npm install --save-dev typescript
-      - name: Compile TypeScript
-        run: npm run build:typescript
-      - name: Run Tests
-        run: npm test
+      - name: Install MongoDB
+        run: npm install --save @nestjs/mongoose mongoose
+      - name: Install validators
+        run: npm install class-validator --save
+      - name: Install validator transformer
+        run: npm install class-transformer --save
+      - name: Install mapped-types
+        run: npm i @nestjs/mapped-types --save
       - name: Build Application
         run: npm run build
